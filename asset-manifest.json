@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/CAD/static/css/main.cdcd378b.css",
-    "main.js": "/CAD/static/js/main.22263e09.js",
-    "static/js/453.995d9be9.chunk.js": "/CAD/static/js/453.995d9be9.chunk.js",
-    "static/media/mierda.jpg": "/CAD/static/media/mierda.12cf9d873975db2b8e91.jpg",
-    "static/media/ondas.jpg": "/CAD/static/media/ondas.8e21334b4e98c4fc48f4.jpg",
-    "static/media/logo.png": "/CAD/static/media/logo.8fb15d713eaddae8e9a4.png",
-    "static/media/mueble1.jpg": "/CAD/static/media/mueble1.b7127197d3a08ddefb48.jpg",
-    "index.html": "/CAD/index.html",
-    "main.cdcd378b.css.map": "/CAD/static/css/main.cdcd378b.css.map",
-    "main.22263e09.js.map": "/CAD/static/js/main.22263e09.js.map",
-    "453.995d9be9.chunk.js.map": "/CAD/static/js/453.995d9be9.chunk.js.map"
+    "main.css": "/static/css/main.b961fefa.css",
+    "main.js": "/static/js/main.77757b75.js",
+    "static/js/453.995d9be9.chunk.js": "/static/js/453.995d9be9.chunk.js",
+    "static/media/mierda.jpg": "/static/media/mierda.12cf9d873975db2b8e91.jpg",
+    "static/media/ondas.jpg": "/static/media/ondas.8e21334b4e98c4fc48f4.jpg",
+    "static/media/logo.png": "/static/media/logo.8fb15d713eaddae8e9a4.png",
+    "static/media/mueble1.jpg": "/static/media/mueble1.b7127197d3a08ddefb48.jpg",
+    "index.html": "/index.html",
+    "main.b961fefa.css.map": "/static/css/main.b961fefa.css.map",
+    "main.77757b75.js.map": "/static/js/main.77757b75.js.map",
+    "453.995d9be9.chunk.js.map": "/static/js/453.995d9be9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cdcd378b.css",
-    "static/js/main.22263e09.js"
+    "static/css/main.b961fefa.css",
+    "static/js/main.77757b75.js"
   ]
 }
