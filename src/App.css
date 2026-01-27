@@ -7,8 +7,10 @@
 
 body, html {
   height: 100%;
-  overflow: hidden; /* Evita que toda la página se desplace */
+  overflow-x: hidden; /* ✅ Oculta solo desplazamiento horizontal */
+  overflow-y: auto;   /* ✅ Permite scroll vertical para que el hover no se corte */
 }
+
 
 /* Contenedor principal */
 .app {
@@ -16,6 +18,7 @@ body, html {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh; 
 }
 
 .navbar {
@@ -23,12 +26,14 @@ body, html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 90px;
+  height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
-  transition: top 0.15s ease-in-out; /* Reducción del tiempo para ocultar más rápido */
+  transition: top 0.15s ease-in-out;
+  background-color: #000;
+
 }
 
 .navbar.hidden {
@@ -49,13 +54,14 @@ body, html {
 }
 
 .navbar ul li {
-  margin: 0 20px;
+  margin: 0 50px;
 }
 
 .navbar ul li a {
-  color: white;
+  color: rgb(243, 243, 236);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 15px;
+  letter-spacing: 6px;
   font-weight: bold;
   font-family: 'Arial', sans-serif;
   text-transform: uppercase;
@@ -63,13 +69,14 @@ body, html {
 }
 
 .navbar ul li a:hover {
-  color: #acaca9;
+  color: #686868;
 }
 
 /* Contenedor del contenido desplazable */
 .scroll-container {
   width: 100%;
   height: 100vh;
+  flex: 1;
   overflow-y: auto; /* Solo esta parte se desplazará */
   scroll-behavior: smooth;
 }
@@ -100,15 +107,10 @@ body, html {
   line-height: 1.5;
 }
 
-/* Imagen en la segunda página */
-.page2 .left-image {
-  width: 50vw; /* Exactamente la mitad de la pantalla */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
-  object-fit: cover; /* Asegura que la imagen se ajuste bien */
-}
+
 /* Contenedor de la segunda página */
 .page2 {
-  background-image: url('./assets/ondas.jpg');
+  background-color: rgb(180, 180, 173);
   background-size: cover;
   background-position: center;
   background-attachment: fixed; 
@@ -117,16 +119,11 @@ body, html {
 }
   
   
-.page2 .text-container {
-  width: 50%; /* Mantiene el texto en la otra mitad */
-  padding: 70px;
-  text-align: left;
-}
 
 
 /* Tercera página */
 .page3 {
-  background-image: url('./assets/ondas.jpg');
+  background-color: rgb(180, 180, 173);
   background-size: cover;
   background-position: center;
   background-attachment: fixed; 
@@ -163,7 +160,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -172,13 +169,13 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  z-index: 2;
+  height: 20vh;
+  z-index: 5;
 }
 
 /* Estilos del logo */
 .logo {
-  width: 550px;
+  width: 900px;
   height: auto;
 }
 
@@ -277,14 +274,6 @@ body, html {
 }
 
 
-.navbar ul li a {
-  font-family: "Teko", sans-serif;
-  font-weight: 700; /* Opción: 300 (delgada), 400 (normal), 700 (negrita) */
-  font-size: 22px; /* Ajusta según preferencia */
-  letter-spacing: 1px; /* Espaciado entre letras */
-  text-transform: uppercase; /* Convierte el texto en mayúsculas */
-}
-
 
 h1, p {
   font-family: "Montserrat", sans-serif;
@@ -375,5 +364,231 @@ p {
 
   p {
     font-size: 20px;
+  }
+}
+
+
+.carousel-buttons {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+  background-color: #555;
+}
+
+/* --- ESTILOS ANTIGUOS DEL CARRUSEL (Puedes borrarlos) --- */
+/* .carousel-container, .carousel-images, .carousel-item, .carousel-text, .carousel-nav-buttons, .nav-button ya no se usan */
+
+
+/* --- NUEVOS ESTILOS PARA LA GALERÍA DE IMÁGENES --- */
+
+.gallery-section-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* ✅ Centra el bloque */
+  padding: 50px 0;
+}
+
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* ✅ Título alineado con imágenes */
+  max-width: 95vmax; /* ✅ Centrado y con ancho máximo */
+  width: 100%;
+  padding: 0 7px; /* Margen lateral */
+}
+
+.gallery-wrapper h1 {
+  font-size: 50px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #0f0f0fe0;
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 30px;
+  overflow-x: auto;
+  width: 100%;
+  padding: 20px 0; /* Espacio arriba y abajo para que no se recorte */
+
+}
+
+
+/* Estilo para cada cuadro (item) de la galería */
+.gallery-item {
+  width: 600px; /* Ancho fijo para cada cuadro */
+  background-color: #f8f9fa; /* Un color de fondo claro */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.247); /* Sombra suave para dar profundidad */
+  overflow: hidden; /* Asegura que la imagen no se salga de los bordes redondeados */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.8s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px); /* Efecto de levitación al pasar el cursor */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para la imagen dentro del cuadro */
+.gallery-image {
+  width: 100%;
+  height: 600px; /* Altura fija para todas las imágenes */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+}
+
+/* Estilo para el texto debajo de la imagen */
+.gallery-text {
+  padding: 5px;
+  font-size: 16px; /* Tamaño de fuente más apropiado para la descripción */
+  font-style: normal; /* Quita la itálica para mejor legibilidad */
+  color: #333;
+  line-height: 1.4;
+  text-align: center;
+}
+
+
+/* --- ESTILOS PARA EL FOOTER --- */
+
+
+/* Ajustes para que el footer se adapte bien dentro de la sección */
+.footer {
+  width: 100%;
+  height: 400px; /* ✅ Altura pequeña para que no parezca una sección */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #d1d1d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.footer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 15, 15, 0.92);
+  z-index: 1;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.footer-logo {
+  max-width: 120px;
+  margin-bottom: 10px;
+}
+
+
+.footer-column h3 {
+  font-family: "Teko", sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.footer-column p,
+.footer-column li {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  font-style: normal;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column a {
+  color: #d1d1d1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+}
+
+.empresa-web {
+  color: #ff4d4d; /* Color rojo para destacar */
+  font-weight: bold;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px; /* Espacio entre íconos */
+}
+
+.social-icons a {
+  color: #d1d1d1;
+  font-size: 24px; /* Tamaño de los íconos */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* --- ESTILOS RESPONSIVOS PARA EL FOOTER --- */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center; /* Centra las columnas en móvil */
+    text-align: center;
+  }
+
+  .footer-column {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 }
