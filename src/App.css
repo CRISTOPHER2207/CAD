@@ -77,10 +77,11 @@ body, html {
   width: 100%;
   height: 100vh;
   flex: 1;
-  overflow-y: auto; /* Solo esta parte se desplazará */
+  overflow-y: auto;
   scroll-behavior: smooth;
+  /* --- AÑADE ESTO --- */
+  padding-bottom: 150px; /* Ajusta este número según cuánto espacio blanco quieras */
 }
-
 /* Cada página ocupa toda la pantalla */
 .page {
   width: 100%;
@@ -590,5 +591,644 @@ p {
     align-items: center;
     display: flex;
     flex-direction: column;
+  }
+}
+
+
+/* --- NUEVA SECCIÓN CALIDAD (PAGE 2) --- */
+
+.page-quality {
+  background-color: #ffffff; /* Fondo blanco para que resalten los iconos */
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quality-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.quality-header h1 {
+  font-size: 45px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  text-transform: none; /* Opcional: según tu gusto */
+}
+
+.quality-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 60px;
+  font-style: normal;
+}
+
+.quality-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en desktop */
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.quality-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.quality-icon {
+  font-size: 40px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.quality-item h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.quality-item p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+  font-style: normal;
+}
+
+/* Responsivo para la sección de calidad */
+@media (max-width: 1024px) {
+  .quality-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .quality-grid {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+    gap: 40px;
+  }
+  
+  .quality-header h1 {
+    font-size: 32px;
+  }
+}
+
+
+/* --- SECCIÓN COLECCIONES (ESTILO IMAGEN) --- */
+.collections-section {
+  background-color: #ffffff;
+  padding-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* --- CAMBIA EL PADDING-BOTTOM AQUÍ --- */
+  padding-bottom: 200px; 
+  min-height: auto;
+}
+
+.collections-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.collections-header h1 {
+  font-size: 40px;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.collections-header p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+  font-style: normal;
+}
+
+.collections-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.collection-card {
+  flex: 1;
+  min-width: 300px;
+  max-width: 380px;
+  cursor: pointer;
+}
+
+/* Contenedor de la imagen para controlar el recorte del zoom */
+.collection-image-wrapper {
+  width: 100%;
+  height: 450px; /* Altura similar a la de tu imagen */
+  border-radius: 25px; /* Bordes muy redondeados como en la foto */
+  overflow: hidden; /* Importante para que la imagen no se salga al agrandarse */
+  background-color: #f0f0f0;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.collection-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave */
+}
+
+/* EFECTO HOVER: La imagen se agranda */
+.collection-card:hover .collection-image-wrapper img {
+  transform: scale(1.1); /* Se agranda un 10% */
+}
+
+.collection-card h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: left; 
+  margin-top: 15px;
+  
+  /* Aseguramos que no haya rastro de líneas */
+  text-decoration: none !important; 
+  border-bottom: none !important; 
+}
+
+.collection-card-link, 
+.collection-card-link:hover, 
+.collection-card-link:focus, 
+.collection-card-link:active {
+  text-decoration: none !important; /* Mata el subrayado por defecto del navegador */
+  outline: none;
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+  .collections-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .collection-image-wrapper {
+    height: 350px;
+  }
+}
+
+
+
+/* =========================================
+   NUEVOS ESTILOS: SECCIONES DETALLADAS ZIG-ZAG
+========================================= */
+
+/* Estilo general de la sección oscura */
+.detailed-section {
+  /* Color plomo oscuro elegante para el fondo */
+  background-color: #2a2a2a; 
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Forzamos que la altura sea al menos la de la pantalla, pero pueda crecer */
+  min-height: 90vh; 
+  height: auto !important; 
+}
+
+/* Contenedor flexible de dos columnas */
+.detailed-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center; /* Centra verticalmente texto e imagen */
+  gap: 60px; /* Espacio grande entre imagen y texto */
+  /* Por defecto: Imagen Izquierda, Texto Derecha */
+  flex-direction: row; 
+}
+
+/* CLASE CLAVE PARA EL ZIG-ZAG:
+   Si se aplica esta clase, invierte el orden: Texto Izquierda, Imagen Derecha */
+.detailed-container.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+/* --- Columna del Carrusel (Imágenes) --- */
+.detailed-carousel-col {
+  flex: 1; /* Ocupa el 50% del espacio */
+  width: 50%; /* Necesario para que el carrusel calcule bien el ancho */
+  max-width: 600px;
+}
+
+/* Envoltura para dar sombra elegante al carrusel */
+.carousel-wrapper-shadow {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* Sombra profunda */
+}
+
+/* Estilo de cada imagen individual dentro del carrusel */
+.carousel-slide-item img {
+  width: 100%;
+  height: 500px; /* Altura fija para uniformidad */
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Columna de Texto --- */
+.detailed-text-col {
+  flex: 1; /* Ocupa el otro 50% */
+  color: #ffffff; /* Texto blanco para contraste elegante */
+  padding: 20px;
+  text-align: left;
+}
+
+.detailed-text-col h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 42px;
+  font-weight: 300; /* Fuente más fina y elegante */
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* Pequeña línea decorativa debajo del título */
+.divider-line {
+  width: 60px;
+  height: 3px;
+  background-color: #d4af37; /* Un toque dorado elegante (opcional, puedes cambiarlo a blanco) */
+  margin-bottom: 30px;
+}
+
+.detailed-text-col p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  line-height: 1.8; /* Mayor interlineado para facilitar lectura */
+  color: #e0e0e0; /* Blanco ligeramente apagado para no cansar la vista */
+  margin-bottom: 40px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Botón elegante */
+.elegant-button {
+  padding: 15px 35px;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.elegant-button:hover {
+  background-color: #ffffff;
+  color: #2a2a2a; /* El texto se vuelve del color del fondo al hacer hover */
+}
+
+/* =========================================
+   ESTILOS REFINADOS: SECCIONES DETALLADAS ZIG-ZAG
+========================================= */
+
+.detailed-section {
+  background-color: #2a2a2a; /* Fondo oscuro elegante */
+  padding: 100px 20px; /* Más espacio vertical */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: auto;
+}
+
+.detailed-container {
+  max-width: 1100px; /* Un poco más estrecho para un look más contenido */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 80px; /* Mayor separación entre imagen y texto */
+  flex-direction: row;
+}
+
+.detailed-container.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+/* --- Columna del Carrusel (Imágenes) --- */
+.detailed-carousel-col {
+  flex: 1;
+  width: 50%;
+  max-width: 500px; /* Ancho máximo controlado */
+}
+
+/* Contenedor con bordes redondeados FINOS y proporciones ajustadas */
+.carousel-wrapper-shadow {
+  border-radius: 12px; /* Bordes redondeados finos como en el ejemplo */
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* Sombra más pronunciada */
+  aspect-ratio: 4 / 3; /* Proporción más rectangular/cuadrada */
+}
+
+.carousel-slide-item {
+    height: 100%; /* Ocupa toda la altura del contenedor */
+}
+
+.carousel-slide-item img {
+  width: 100%;
+  height: 100%; /* Se ajusta al contenedor */
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Columna de Texto --- */
+.detailed-text-col {
+  flex: 1;
+  color: #ffffff;
+  text-align: left;
+}
+
+.detailed-text-col h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.divider-line {
+  width: 50px;
+  height: 2px;
+  background-color: #ffffff; /* Línea blanca fina */
+  margin-bottom: 25px;
+  opacity: 0.7;
+}
+
+.section-headline {
+    font-size: 18px;
+    color: #e0e0e0;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* --- Nueva Lista de Características con Iconos --- */
+.features-list {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espacio entre cada característica */
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start; /* Alinear icono con la primera línea de texto */
+}
+
+.feature-icon {
+    font-size: 24px; /* Tamaño del icono */
+    color: #ffffff;
+    margin-right: 20px;
+    margin-top: 3px; /* Ajuste fino para alinear con el título */
+    opacity: 0.9;
+}
+
+.feature-content h4 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.feature-content p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #cccccc; /* Texto descriptivo ligeramente más apagado */
+    font-weight: 400;
+}
+
+
+/* Botón elegante */
+.elegant-button {
+  padding: 15px 40px;
+  background-color: transparent;
+  border: 1px solid #ffffff; /* Borde más fino */
+  color: #ffffff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px; /* Ligero redondeo en el botón */
+}
+
+.elegant-button:hover {
+  background-color: #ffffff;
+  color: #2a2a2a;
+}
+
+/* Puntos del carrusel */
+.detailed-section .slick-dots {
+    bottom: -30px;
+}
+.detailed-section .slick-dots li button:before {
+    color: #ffffff;
+    opacity: 0.3;
+    font-size: 10px;
+}
+.detailed-section .slick-dots li.slick-active button:before {
+    opacity: 1;
+}
+
+
+/* --- RESPONSIVO --- */
+@media (max-width: 968px) {
+  .detailed-container,
+  .detailed-container.reverse-layout {
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .detailed-carousel-col,
+  .detailed-text-col {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .carousel-wrapper-shadow {
+      aspect-ratio: auto; /* En móvil dejamos que la altura sea automática o fija */
+      height: 350px;
+  }
+
+  .divider-line {
+    margin: 0 auto 25px auto;
+  }
+  
+  .feature-item {
+      align-items: center; /* Centrar iconos y texto en móvil */
+      flex-direction: column;
+      text-align: center;
+  }
+  
+  .feature-icon {
+      margin-right: 0;
+      margin-bottom: 15px;
+      font-size: 28px;
+  }
+}
+
+/* Forzar que el carrusel sea visible y tenga tamaño */
+.detailed-carousel-col {
+  min-height: 400px; /* Altura mínima de seguridad */
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.carousel-wrapper-shadow {
+  background-color: #333; /* Fondo gris por si la imagen no carga */
+  min-height: 400px;
+  width: 100% !important;
+}
+
+/* IMPORTANTE: Si el carrusel no se ve, quita temporalmente el fade-in */
+.fade-in.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Ajuste para los puntos de navegación que a veces se ocultan */
+.slick-dots {
+  display: block !important;
+  bottom: -30px !important;
+
+}
+
+
+
+/* =========================================
+   ESTILOS SECCIÓN UBICACIÓN (SHOWROOM)
+========================================= */
+.showroom-section {
+  background-color: #f9f9f9; /* Fondo claro para contrastar con las secciones oscuras */
+  padding: 100px 20px;
+  min-height: auto;
+}
+
+.showroom-content {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.showroom-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.showroom-header h1 {
+  font-size: 42px;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.showroom-header p {
+  font-size: 18px;
+  color: #666;
+  font-style: normal;
+}
+
+/* Grid de 3 columnas: Texto | Imagen | Mapa */
+.showroom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr; /* El mapa es un poco más ancho */
+  gap: 0; /* Sin espacio entre columnas para un look integrado */
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* Columna de Información */
+.showroom-info {
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.showroom-info h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+}
+
+.info-details .city {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.info-details .city a {
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+.hours-block p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 10px;
+  font-style: normal;
+}
+
+.visit-button {
+  margin-top: 40px;
+  padding: 15px 30px;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.visit-button:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* Columna de Imagen */
+.showroom-image {
+  width: 100%;
+  height: 100%;
+}
+
+.showroom-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Columna de Mapa */
+.showroom-map {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 1024px) {
+  .showroom-grid {
+    grid-template-columns: 1fr; /* Una columna en tablets y móviles */
+  }
+  
+  .showroom-map {
+    height: 400px;
   }
 }
