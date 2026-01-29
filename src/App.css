@@ -1,713 +1,248 @@
-/* Reset general */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Teko:wght@400;500;600&display=swap');
+
+/* --- RESET & GLOBAL --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html {
-  height: 100%;
-  overflow-x: hidden; /* ✅ Oculta solo desplazamiento horizontal */
-  overflow-y: auto;   /* ✅ Permite scroll vertical para que el hover no se corte */
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f4f4f4;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
 
-/* Contenedor principal */
+/* --- APP LAYOUT --- */
 .app {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; 
+  position: relative;
 }
 
+/* --- NAVBAR (ESCRITORIO & MÓVIL) --- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 65px;
+  height: 80px; /* Un poco más alto para elegancia */
+  background-color: rgba(0, 0, 0, 0.95); /* Casi sólido */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 100;
-  transition: top 0.15s ease-in-out;
-  background-color: #000;
-
 }
 
 .navbar.hidden {
-  top: -100px; /* Desplaza la barra fuera de la pantalla */
+  transform: translateY(-100%);
 }
 
 .navbar.visible {
-  top: 0; /* La barra se muestra nuevamente */
-}
-
-
-/* Lista de navegación */
-.navbar ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navbar ul li {
-  margin: 0 50px;
-}
-
-.navbar ul li a {
-  color: rgb(243, 243, 236);
-  text-decoration: none;
-  font-size: 15px;
-  letter-spacing: 6px;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  text-transform: uppercase;
-  transition: color 0.3s ease-in-out;
-}
-
-.navbar ul li a:hover {
-  color: #686868;
-}
-
-/* Contenedor del contenido desplazable */
-.scroll-container {
-  width: 100%;
-  height: 100vh;
-  flex: 1;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  /* --- AÑADE ESTO --- */
-  padding-bottom: 150px; /* Ajusta este número según cuánto espacio blanco quieras */
-}
-/* Cada página ocupa toda la pantalla */
-.page {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-/* Primera página con imagen de fondo */
-.page1 {
-  background-image: url('./assets/mierda.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Fija el fondo */
-}
-
-/* Contenedor de texto alineado */
-.text-container {
-  width: 50%; /* Ocupa solo la mitad de la pantalla */
-  padding: 20px;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-
-/* Contenedor de la segunda página */
-.page2 {
-  background-color: rgb(180, 180, 173);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; 
-  padding: 0;
-  height: 100vh; /* Asegura que la página ocupe toda la pantalla */
-}
-  
-  
-
-
-/* Tercera página */
-.page3 {
-  background-color: rgb(180, 180, 173);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; 
-  padding: 0;
-  height: 100vh; /* Asegura que la página ocupe toda la pantalla */
-}
-
-
-/* Tercera página: texto pegado a la izquierda */
-.page3 .text-container {
-  margin-right: auto; /* Empuja el contenido hacia la izquierda */
-  padding-left: 70px; /* Espacio desde el borde izquierdo */
-  text-align: left;
-}
-
-
-
-
-
-/* Estilo de los textos */
-.text-box {
-  max-width: 400px;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgb(252, 252, 252);
-}
-
-
-/* Capa oscura sobre la imagen */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-
-/* Logo centrado */
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20vh;
-  z-index: 5;
-}
-
-/* Estilos del logo */
-.logo {
-  width: 900px;
-  height: auto;
-}
-
-/* Botón de WhatsApp fijo */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 200; /* Se mantiene siempre visible */
-}
-
-.whatsapp-float img {
-  width: 60px;
-  height: 60px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.whatsapp-float:hover img {
-  transform: scale(1.1);
-}
-
-
-/* Inicialmente ocultamos la imagen y el texto con opacidad 0 */
-.fade-in {
-  opacity: 0;
-  transform: translateY(50px); /* Empieza ligeramente desplazado hacia abajo */
-  transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-/* Cuando aparece en pantalla, se hace visible */
-.fade-in.show {
-  opacity: 1;
   transform: translateY(0);
 }
 
-
-.image-container {
-  width: 800px; /* Cambia este valor para ajustar el tamaño */
-  height: 800px; /* Ajusta según necesidad */
-  border-radius: 20px; /* Esquinas curveadas */
-  overflow: hidden; /* Evita que la imagen sobresalga */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.9); /* Opcional: Agrega un fondo */
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Sombra opcional */
-}
-
-.image-container .left-image {
+.navbar-container {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
-}
-
-.image-container .right-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
-}
-
-/* Ajusta el contenedor de la imagen en la página 3 */
-.page3 .image-container {
-  margin-right: 70px; /* Agrega un margen derecho para separarla del borde */
-  width: 800px; /* Ajusta el tamaño según necesidad */
-  height: 800px;
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-.logo-content {
-  text-align: center;
-}
-
-.slogan {
-  margin-top: 40px; /* Espacio entre el logo y el slogan */
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px rgb(36, 36, 36);
-}
-
-
-.slogan {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-size: 60px;
-  color: #dddddd; /* Color oscuro elegante */
-  font-weight: 400; 
-  font-style: italic;
-}
-
-
-
-h1, p {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400; /* Ajusta según sea necesario */
-  
-}
-
-h1 {
-  font-weight: 600; /* Hace que el h1 sea más grueso */
-  font-size: 50px; /* Ajusta el tamaño */
-  font-style: normal;
-}
-
-p {
-  font-weight: 500;
-  font-size: 25px; /* Ajusta el tamaño del párrafo */
-  line-height: 1.4; /* Mejora la legibilidad */
-  font-style: italic;
-}
-
-
-
-
-
-/* Estilos Responsivos */
-@media (max-width: 768px) {
-  /* Ajustar el navbar */
-  .navbar {
-    height: 70px;
-  }
-
-  .navbar ul {
-    flex-direction: row; /* Mantiene en línea */
-    padding: 0;
-  }
-
-  .navbar ul li {
-    margin: 0 10px;
-  }
-
-  .navbar ul li a {
-    font-size: 18px;
-  }
-
-  /* Ajusta el logo y slogan */
-  .logo {
-    width: 80%; /* Reduce tamaño en móviles */
-  }
-
-  .slogan {
-    font-size: 28px; /* Reduce el tamaño del slogan */
-    margin-top: 15px;
-  }
-
-  /* Cambiar la disposición de las secciones */
-  .page2, .page3 {
-    flex-direction: column; /* Coloca texto arriba e imagen abajo */
-    height: auto;
-    padding: 30px 10px; /* Agrega espacio para mejorar la lectura */
-  }
-
-  /* Ajustar el texto */
-  .page2 .text-container,
-  .page3 .text-container {
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-  }
-
-  /* Ajustar las imágenes */
-  .page2 .image-container,
-  .page3 .image-container {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }
-
-  .image-container img {
-    width: 100%;
-    height: auto;
-  }
-
-  /* Ajustar tamaños de texto */
-  h1 {
-    font-size: 40px;
-  }
-
-  p {
-    font-size: 20px;
-  }
-}
-
-
-.carousel-buttons {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
-
-.carousel-dot {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: none;
-  background-color: #ccc;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.carousel-dot.active {
-  background-color: #555;
-}
-
-/* --- ESTILOS ANTIGUOS DEL CARRUSEL (Puedes borrarlos) --- */
-/* .carousel-container, .carousel-images, .carousel-item, .carousel-text, .carousel-nav-buttons, .nav-button ya no se usan */
-
-
-/* --- NUEVOS ESTILOS PARA LA GALERÍA DE IMÁGENES --- */
-
-.gallery-section-container {
-  width: 100%;
-  display: flex;
-  justify-content: center; /* ✅ Centra el bloque */
-  padding: 50px 0;
-}
-
-.gallery-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* ✅ Título alineado con imágenes */
-  max-width: 95vmax; /* ✅ Centrado y con ancho máximo */
-  width: 100%;
-  padding: 0 7px; /* Margen lateral */
-}
-
-.gallery-wrapper h1 {
-  font-size: 50px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  color: #0f0f0fe0;
-}
-
-.gallery-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  gap: 30px;
-  overflow-x: auto;
-  width: 100%;
-  padding: 20px 0; /* Espacio arriba y abajo para que no se recorte */
-
-}
-
-
-/* Estilo para cada cuadro (item) de la galería */
-.gallery-item {
-  width: 600px; /* Ancho fijo para cada cuadro */
-  background-color: #f8f9fa; /* Un color de fondo claro */
-  border-radius: 15px; /* Bordes redondeados */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.247); /* Sombra suave para dar profundidad */
-  overflow: hidden; /* Asegura que la imagen no se salga de los bordes redondeados */
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.8s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-10px); /* Efecto de levitación al pasar el cursor */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Estilo para la imagen dentro del cuadro */
-.gallery-image {
-  width: 100%;
-  height: 600px; /* Altura fija para todas las imágenes */
-  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
-}
-
-/* Estilo para el texto debajo de la imagen */
-.gallery-text {
-  padding: 5px;
-  font-size: 16px; /* Tamaño de fuente más apropiado para la descripción */
-  font-style: normal; /* Quita la itálica para mejor legibilidad */
-  color: #333;
-  line-height: 1.4;
-  text-align: center;
-}
-
-
-/* --- ESTILOS PARA EL FOOTER --- */
-
-
-/* Ajustes para que el footer se adapte bien dentro de la sección */
-.footer {
-  width: 100%;
-  height: 400px; /* ✅ Altura pequeña para que no parezca una sección */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #d1d1d1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.footer-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(15, 15, 15, 0.92);
-  z-index: 1;
-}
-
-.footer-container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1200px;
-  padding: 10px 20px;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 40px;
 }
 
-.footer-column {
-  flex: 1;
-  min-width: 200px;
-  padding: 0 10px;
-  margin-bottom: 10px;
-}
-
-.footer-logo {
-  max-width: 120px;
-  margin-bottom: 10px;
-}
-
-
-.footer-column h3 {
-  font-family: "Teko", sans-serif;
-  font-size: 24px;
-  color: #ffffff;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+/* Logo en Navbar */
+.nav-logo-area a {
+  font-family: 'Teko', sans-serif;
+  font-size: 30px;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 2px;
   font-weight: 600;
 }
 
-.footer-column p,
-.footer-column li {
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 10px;
-  font-style: normal;
-}
-
-.footer-column ul {
+/* Menú Desktop */
+.nav-links {
+  display: flex;
   list-style: none;
-  padding: 0;
-  margin: 0;
+  align-items: center;
+  gap: 40px;
 }
 
-.footer-column a {
-  color: #d1d1d1;
+.nav-links a {
+  color: #e0e0e0;
   text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
-.footer-column a:hover {
+.nav-links a:hover {
   color: #ffffff;
 }
 
-.empresa-web {
-  color: #ff4d4d; /* Color rojo para destacar */
-  font-weight: bold;
+/* Botón CTA especial en el menú */
+.nav-cta a {
+  border: 1px solid #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
-.social-icons {
-  margin-top: 20px;
-  display: flex;
-  gap: 15px; /* Espacio entre íconos */
+.nav-cta a:hover {
+  background-color: #fff;
+  color: #000;
 }
 
-.social-icons a {
-  color: #d1d1d1;
-  font-size: 24px; /* Tamaño de los íconos */
-  transition: color 0.3s ease, transform 0.3s ease;
+/* Icono Móvil (Oculto en Desktop) */
+.mobile-menu-icon {
+  display: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
 }
 
-.social-icons a:hover {
-  color: #ffffff;
-  transform: scale(1.1);
-}
-
-/* --- ESTILOS RESPONSIVOS PARA EL FOOTER --- */
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: center; /* Centra las columnas en móvil */
-    text-align: center;
+/* --- RESPONSIVIDAD NAVBAR (MÓVIL) --- */
+@media (max-width: 900px) {
+  .navbar-container {
+    padding: 0 20px;
   }
 
-  .footer-column {
+  .mobile-menu-icon {
+    display: block; /* Mostrar hamburguesa */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0; /* Sale desde la derecha */
+    width: 70%; /* Ocupa el 70% de la pantalla */
+    height: 100vh;
+    background-color: #111;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    display: flex;
-    flex-direction: column;
+    gap: 40px;
+    transform: translateX(100%); /* Oculto inicialmente */
+    transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+
+  .nav-links.active {
+    transform: translateX(0); /* Entra a la pantalla */
+  }
+
+  .nav-links a {
+    font-size: 18px; /* Texto más grande en móvil */
   }
 }
 
-
-/* --- NUEVA SECCIÓN CALIDAD (PAGE 2) --- */
-
-.page-quality {
-  background-color: #ffffff; /* Fondo blanco para que resalten los iconos */
-  padding: 80px 20px;
+/* --- HERO SECTION --- */
+.page1 {
+  height: 100vh;
+  background-image: url('./assets/mierda.jpg'); /* Asegúrate de que la ruta sea correcta */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax básico */
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.quality-content {
-  max-width: 1200px;
-  width: 100%;
+.overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.logo-container {
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.logo {
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.hero-slogan {
+  color: #ddd;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .hero-slogan { font-size: 16px; }
+}
+
+/* --- SECCIÓN CALIDAD (PAGE 2) --- */
+.page-quality {
+  background-color: #fff;
+  padding: 100px 20px;
   text-align: center;
 }
 
+.quality-content { max-width: 1200px; margin: 0 auto; }
+
 .quality-header h1 {
-  font-size: 45px;
-  color: #1a1a1a;
+  font-size: 40px;
+  font-weight: 600;
   margin-bottom: 10px;
-  text-transform: none; /* Opcional: según tu gusto */
+  color: #222;
 }
 
 .quality-subtitle {
-  font-size: 18px;
   color: #666;
+  font-size: 18px;
   margin-bottom: 60px;
-  font-style: normal;
 }
 
 .quality-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas en desktop */
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-  padding: 0 20px;
 }
 
 .quality-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  padding: 30px 20px;
+  background: #fdfdfd;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-.quality-icon {
-  font-size: 40px;
-  color: #333;
-  margin-bottom: 20px;
-}
+.quality-item:hover { transform: translateY(-5px); }
 
-.quality-item h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #111;
-}
+.quality-icon { font-size: 35px; color: #1a1a1a; margin-bottom: 20px; }
+.quality-item h3 { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+.quality-item p { font-size: 14px; color: #777; line-height: 1.6; }
 
-.quality-item p {
-  font-size: 15px;
-  line-height: 1.5;
-  color: #555;
-  font-style: normal;
-}
+@media (max-width: 1024px) { .quality-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .quality-grid { grid-template-columns: 1fr; } }
 
-/* Responsivo para la sección de calidad */
-@media (max-width: 1024px) {
-  .quality-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
-  }
-}
-
-@media (max-width: 600px) {
-  .quality-grid {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
-    gap: 40px;
-  }
-  
-  .quality-header h1 {
-    font-size: 32px;
-  }
-}
-
-
-/* --- SECCIÓN COLECCIONES (ESTILO IMAGEN) --- */
+/* --- COLECCIONES --- */
 .collections-section {
-  background-color: #ffffff;
-  padding-top: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* --- CAMBIA EL PADDING-BOTTOM AQUÍ --- */
-  padding-bottom: 200px; 
-  min-height: auto;
+  padding: 80px 20px 120px; /* Padding inferior generoso */
+  background: #f9f9f9;
 }
 
-.collections-content {
-  max-width: 1200px;
-  width: 100%;
-  text-align: center;
-}
-
-.collections-header h1 {
-  font-size: 40px;
-  color: #1a1a1a;
-  margin-bottom: 15px;
-}
-
-.collections-header p {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 50px;
-  font-style: normal;
-}
+.collections-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+.collections-header h1 { margin-bottom: 50px; font-size: 38px; color: #111; }
 
 .collections-grid {
   display: flex;
@@ -717,404 +252,155 @@ p {
 }
 
 .collection-card {
-  flex: 1;
-  min-width: 300px;
-  max-width: 380px;
-  cursor: pointer;
+  text-decoration: none;
+  width: 350px;
+  display: block;
 }
 
-/* Contenedor de la imagen para controlar el recorte del zoom */
 .collection-image-wrapper {
   width: 100%;
-  height: 450px; /* Altura similar a la de tu imagen */
-  border-radius: 25px; /* Bordes muy redondeados como en la foto */
-  overflow: hidden; /* Importante para que la imagen no se salga al agrandarse */
-  background-color: #f0f0f0;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .collection-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave */
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.7s ease;
 }
 
-/* EFECTO HOVER: La imagen se agranda */
-.collection-card:hover .collection-image-wrapper img {
-  transform: scale(1.1); /* Se agranda un 10% */
-}
+.collection-card:hover .collection-image-wrapper img { transform: scale(1.08); }
 
 .collection-card h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-align: left; 
-  margin-top: 15px;
-  
-  /* Aseguramos que no haya rastro de líneas */
-  text-decoration: none !important; 
-  border-bottom: none !important; 
-}
-
-.collection-card-link, 
-.collection-card-link:hover, 
-.collection-card-link:focus, 
-.collection-card-link:active {
-  text-decoration: none !important; /* Mata el subrayado por defecto del navegador */
-  outline: none;
-}
-
-/* Ajuste móvil */
-@media (max-width: 768px) {
-  .collections-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  .collection-image-wrapper {
-    height: 350px;
-  }
-}
-
-
-
-/* =========================================
-   NUEVOS ESTILOS: SECCIONES DETALLADAS ZIG-ZAG
-========================================= */
-
-/* Estilo general de la sección oscura */
-.detailed-section {
-  /* Color plomo oscuro elegante para el fondo */
-  background-color: #2a2a2a; 
-  padding: 80px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Forzamos que la altura sea al menos la de la pantalla, pero pueda crecer */
-  min-height: 90vh; 
-  height: auto !important; 
-}
-
-/* Contenedor flexible de dos columnas */
-.detailed-container {
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
-  align-items: center; /* Centra verticalmente texto e imagen */
-  gap: 60px; /* Espacio grande entre imagen y texto */
-  /* Por defecto: Imagen Izquierda, Texto Derecha */
-  flex-direction: row; 
-}
-
-/* CLASE CLAVE PARA EL ZIG-ZAG:
-   Si se aplica esta clase, invierte el orden: Texto Izquierda, Imagen Derecha */
-.detailed-container.reverse-layout {
-  flex-direction: row-reverse;
-}
-
-/* --- Columna del Carrusel (Imágenes) --- */
-.detailed-carousel-col {
-  flex: 1; /* Ocupa el 50% del espacio */
-  width: 50%; /* Necesario para que el carrusel calcule bien el ancho */
-  max-width: 600px;
-}
-
-/* Envoltura para dar sombra elegante al carrusel */
-.carousel-wrapper-shadow {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.4); /* Sombra profunda */
-}
-
-/* Estilo de cada imagen individual dentro del carrusel */
-.carousel-slide-item img {
-  width: 100%;
-  height: 500px; /* Altura fija para uniformidad */
-  object-fit: cover;
-  display: block;
-}
-
-/* --- Columna de Texto --- */
-.detailed-text-col {
-  flex: 1; /* Ocupa el otro 50% */
-  color: #ffffff; /* Texto blanco para contraste elegante */
-  padding: 20px;
-  text-align: left;
-}
-
-.detailed-text-col h2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 42px;
-  font-weight: 300; /* Fuente más fina y elegante */
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
-
-/* Pequeña línea decorativa debajo del título */
-.divider-line {
-  width: 60px;
-  height: 3px;
-  background-color: #d4af37; /* Un toque dorado elegante (opcional, puedes cambiarlo a blanco) */
-  margin-bottom: 30px;
-}
-
-.detailed-text-col p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 17px;
-  line-height: 1.8; /* Mayor interlineado para facilitar lectura */
-  color: #e0e0e0; /* Blanco ligeramente apagado para no cansar la vista */
-  margin-bottom: 40px;
-  font-style: normal;
-  font-weight: 400;
-}
-
-/* Botón elegante */
-.elegant-button {
-  padding: 15px 35px;
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.elegant-button:hover {
-  background-color: #ffffff;
-  color: #2a2a2a; /* El texto se vuelve del color del fondo al hacer hover */
-}
-
-/* =========================================
-   ESTILOS REFINADOS: SECCIONES DETALLADAS ZIG-ZAG
-========================================= */
-
-.detailed-section {
-  background-color: #2a2a2a; /* Fondo oscuro elegante */
-  padding: 100px 20px; /* Más espacio vertical */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: auto;
-}
-
-.detailed-container {
-  max-width: 1100px; /* Un poco más estrecho para un look más contenido */
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 80px; /* Mayor separación entre imagen y texto */
-  flex-direction: row;
-}
-
-.detailed-container.reverse-layout {
-  flex-direction: row-reverse;
-}
-
-/* --- Columna del Carrusel (Imágenes) --- */
-.detailed-carousel-col {
-  flex: 1;
-  width: 50%;
-  max-width: 500px; /* Ancho máximo controlado */
-}
-
-/* Contenedor con bordes redondeados FINOS y proporciones ajustadas */
-.carousel-wrapper-shadow {
-  border-radius: 12px; /* Bordes redondeados finos como en el ejemplo */
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* Sombra más pronunciada */
-  aspect-ratio: 4 / 3; /* Proporción más rectangular/cuadrada */
-}
-
-.carousel-slide-item {
-    height: 100%; /* Ocupa toda la altura del contenedor */
-}
-
-.carousel-slide-item img {
-  width: 100%;
-  height: 100%; /* Se ajusta al contenedor */
-  object-fit: cover;
-  display: block;
-}
-
-/* --- Columna de Texto --- */
-.detailed-text-col {
-  flex: 1;
-  color: #ffffff;
-  text-align: left;
-}
-
-.detailed-text-col h2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 38px;
+  margin-top: 20px;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: #111;
+  text-align: center;
   font-weight: 600;
-  margin-bottom: 15px;
-  letter-spacing: 0.5px;
+}
+
+/* --- SECCIONES DETALLADAS (ZIG ZAG) --- */
+.detailed-section {
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: #fff;
+  padding: 120px 0; /* Padding vertical masivo para elegancia */
+}
+
+.detailed-container {
+  max-width: 1400px; /* Ancho máximo amplio */
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.detailed-container.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+/* --- COLUMNA DE IMÁGENES (AGRANDADA) --- */
+.detailed-carousel-col {
+  flex-basis: 55%; /* Ocupa el 55% del ancho */
+  width: 55%; /* Fallback */
+}
+
+.carousel-wrapper-shadow {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+.carousel-slide-item img {
+  width: 100%;
+  height: 600px; /* ALTURA AUMENTADA */
+  object-fit: cover;
+  display: block;
+}
+
+/* --- COLUMNA DE TEXTO --- */
+.detailed-text-col {
+  flex-basis: 40%;
+  padding: 20px;
+}
+
+.detailed-text-col h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.1;
 }
 
 .divider-line {
-  width: 50px;
-  height: 2px;
-  background-color: #ffffff; /* Línea blanca fina */
-  margin-bottom: 25px;
-  opacity: 0.7;
+  width: 60px; height: 4px; background: #fff; margin-bottom: 30px;
 }
 
 .section-headline {
-    font-size: 18px;
-    color: #e0e0e0;
-    margin-bottom: 40px;
-    font-weight: 400;
+  font-size: 20px;
+  color: #ccc;
+  font-weight: 300;
+  margin-bottom: 40px;
+  line-height: 1.5;
 }
 
-/* --- Nueva Lista de Características con Iconos --- */
-.features-list {
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px; /* Espacio entre cada característica */
-}
+.features-list { display: flex; flex-direction: column; gap: 30px; margin-bottom: 50px; }
+.feature-item { display: flex; gap: 20px; }
+.feature-icon { font-size: 24px; color: #fff; min-width: 30px; }
+.feature-content h4 { font-size: 16px; font-weight: 600; margin-bottom: 5px; color: #fff; }
+.feature-content p { font-size: 14px; color: #999; line-height: 1.5; }
 
-.feature-item {
-    display: flex;
-    align-items: flex-start; /* Alinear icono con la primera línea de texto */
-}
-
-.feature-icon {
-    font-size: 24px; /* Tamaño del icono */
-    color: #ffffff;
-    margin-right: 20px;
-    margin-top: 3px; /* Ajuste fino para alinear con el título */
-    opacity: 0.9;
-}
-
-.feature-content h4 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #ffffff;
-}
-
-.feature-content p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #cccccc; /* Texto descriptivo ligeramente más apagado */
-    font-weight: 400;
-}
-
-
-/* Botón elegante */
+/* Botón Elegante */
 .elegant-button {
-  padding: 15px 40px;
-  background-color: transparent;
-  border: 1px solid #ffffff; /* Borde más fino */
-  color: #ffffff;
-  font-size: 14px;
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  text-decoration: none;
   text-transform: uppercase;
+  font-size: 13px;
   letter-spacing: 2px;
   font-weight: 600;
-  cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 4px; /* Ligero redondeo en el botón */
+  background: transparent;
+  cursor: pointer;
 }
 
 .elegant-button:hover {
-  background-color: #ffffff;
-  color: #2a2a2a;
+  border-color: #fff;
+  background-color: #fff;
+  color: #000;
 }
 
-/* Puntos del carrusel */
-.detailed-section .slick-dots {
-    bottom: -30px;
-}
-.detailed-section .slick-dots li button:before {
-    color: #ffffff;
-    opacity: 0.3;
-    font-size: 10px;
-}
-.detailed-section .slick-dots li.slick-active button:before {
-    opacity: 1;
-}
-
-
-/* --- RESPONSIVO --- */
+/* RESPONSIVO SECCIONES DETALLADAS */
 @media (max-width: 968px) {
-  .detailed-container,
-  .detailed-container.reverse-layout {
+  .detailed-section { padding: 80px 0; }
+  .detailed-container, .detailed-container.reverse-layout {
     flex-direction: column;
     gap: 50px;
-    text-align: center;
   }
-
-  .detailed-carousel-col,
-  .detailed-text-col {
+  .detailed-carousel-col, .detailed-text-col {
+    flex-basis: 100%;
     width: 100%;
-    max-width: none;
   }
-  
-  .carousel-wrapper-shadow {
-      aspect-ratio: auto; /* En móvil dejamos que la altura sea automática o fija */
-      height: 350px;
+  .carousel-slide-item img {
+    height: 400px; /* Reducir altura en móvil pero mantener presencia */
   }
-
-  .divider-line {
-    margin: 0 auto 25px auto;
-  }
-  
-  .feature-item {
-      align-items: center; /* Centrar iconos y texto en móvil */
-      flex-direction: column;
-      text-align: center;
-  }
-  
-  .feature-icon {
-      margin-right: 0;
-      margin-bottom: 15px;
-      font-size: 28px;
-  }
+  .detailed-text-col { text-align: center; }
+  .divider-line { margin: 0 auto 30px; }
+  .features-list { text-align: left; } /* Mantener features alineados a la izq para lectura */
 }
-
-/* Forzar que el carrusel sea visible y tenga tamaño */
-.detailed-carousel-col {
-  min-height: 400px; /* Altura mínima de seguridad */
-  display: block !important;
-  opacity: 1 !important;
-}
-
-.carousel-wrapper-shadow {
-  background-color: #333; /* Fondo gris por si la imagen no carga */
-  min-height: 400px;
-  width: 100% !important;
-}
-
-/* IMPORTANTE: Si el carrusel no se ve, quita temporalmente el fade-in */
-.fade-in.show {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* Ajuste para los puntos de navegación que a veces se ocultan */
-.slick-dots {
-  display: block !important;
-  bottom: -30px !important;
-
-}
-
-
 
 /* =========================================
-   ESTILOS SECCIÓN UBICACIÓN (SHOWROOM)
+   ESTILOS CORREGIDOS: SECCIÓN UBICACIÓN (SHOWROOM)
 ========================================= */
+
 .showroom-section {
-  background-color: #f9f9f9; /* Fondo claro para contrastar con las secciones oscuras */
+  background-color: #f9f9f9; 
   padding: 100px 20px;
-  min-height: auto;
 }
 
 .showroom-content {
@@ -1125,7 +411,7 @@ p {
 
 .showroom-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .showroom-header h1 {
@@ -1134,101 +420,203 @@ p {
   margin-bottom: 10px;
 }
 
-.showroom-header p {
-  font-size: 18px;
-  color: #666;
-  font-style: normal;
-}
-
-/* Grid de 3 columnas: Texto | Imagen | Mapa */
+/* --- GRID DE 3 COLUMNAS FIJO --- */
 .showroom-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.5fr; /* El mapa es un poco más ancho */
-  gap: 0; /* Sin espacio entre columnas para un look integrado */
+  /* Aquí forzamos 3 columnas iguales: Info | Imagen | Mapa */
+  grid-template-columns: 1fr 1fr 1fr; 
   background: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  overflow: hidden;
-  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-radius: 20px;
+  overflow: hidden; /* Mantiene todo dentro de las esquinas redondeadas */
+  min-height: 500px; /* Altura mínima para que se vea bien */
 }
 
-/* Columna de Información */
+/* 1. Columna Info */
 .showroom-info {
-  padding: 60px 40px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #fff;
+  z-index: 2;
 }
 
 .showroom-info h2 {
   font-size: 28px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #1a1a1a;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
-.info-details .city {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 25px;
-}
-
-.info-details .city a {
-  color: #1a1a1a;
-  text-decoration: underline;
-}
-
-.hours-block p {
+.info-details p {
   font-size: 15px;
   color: #555;
   margin-bottom: 10px;
-  font-style: normal;
+  line-height: 1.6;
 }
 
 .visit-button {
-  margin-top: 40px;
-  padding: 15px 30px;
-  background: transparent;
-  border: 1px solid #1a1a1a;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-  width: fit-content;
-}
-
-.visit-button:hover {
-  background: #1a1a1a;
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: #000;
   color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  width: fit-content;
+  transition: background 0.3s;
+}
+.visit-button:hover {
+  background: #333;
 }
 
-/* Columna de Imagen */
+/* 2. Columna Imagen (CENTRO) - CONTROLADA */
 .showroom-image {
   width: 100%;
   height: 100%;
+  position: relative;
+  border-left: 1px solid #eee; /* Separador sutil opcional */
+  border-right: 1px solid #eee;
 }
 
 .showroom-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* IMPORTANTE: Recorta la imagen para que entre exacta sin estirar */
+  display: block;
 }
 
-/* Columna de Mapa */
+/* 3. Columna Mapa (DERECHA) - RESTAURADO */
+.showroom-map {
+  width: 100%;
+  height: 100%;
+  min-height: 100%; /* Forza a llenar la altura de la grilla */
+  position: relative;
+  cursor: pointer;
+}
+
+.showroom-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  /* Un filtro grisáceo opcional para que combine, quítalo si quieres color full */
+  filter: grayscale(20%); 
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 1024px) {
+  .showroom-grid {
+    /* En tablets/laptops pequeñas bajamos a 2 columnas: Info arriba, Imagen/Mapa abajo */
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto 400px;
+  }
+  .showroom-info {
+    grid-column: 1 / -1; /* Info ocupa todo el ancho arriba */
+  }
+}
+
+@media (max-width: 768px) {
+  .showroom-grid {
+    /* En celular, todo en una sola columna */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 300px 300px;
+  }
+}
+
+/* --- FOOTER (MEJORADO PARA MÓVIL) --- */
+.footer {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #d1d1d1;
+  padding: 80px 20px 40px;
+}
+
+.footer-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 10, 10, 0.94);
+  z-index: 1;
+}
+
+.footer-container {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;
+}
+
+.footer-column { flex: 1; min-width: 250px; }
+.footer-logo { max-width: 150px; margin-bottom: 20px; }
+
+.footer-column h3 {
+  color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px;
+}
+
+.footer-column ul { list-style: none; }
+.footer-column ul li { margin-bottom: 12px; }
+.footer-column ul li a, .footer-column li {
+  color: #999; text-decoration: none; font-size: 14px; transition: color 0.3s;
+}
+.footer-column ul li a:hover { color: #fff; }
+
+.social-icons { display: flex; gap: 20px; margin-top: 25px; }
+.social-icons a { font-size: 20px; color: #fff; }
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-container { flex-direction: column; text-align: center; }
+  .footer-column { align-items: center; display: flex; flex-direction: column; }
+  .social-icons { justify-content: center; }
+}
+
+/* --- WHATSAPP FLOTANTE --- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 2000;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+.whatsapp-float img { width: 60px; height: 60px; }
+
+/* --- UTILIDAD FADE IN --- */
+.fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.show { opacity: 1; transform: translateY(0); }
+
+
+/* --- CORRECCIÓN MAPA --- */
 .showroom-map {
   width: 100%;
   height: 100%;
   min-height: 450px;
+  position: relative; /* Necesario para el iframe */
 }
 
-/* Responsivo para móviles */
+/* En responsive, ajustamos la altura */
 @media (max-width: 1024px) {
-  .showroom-grid {
-    grid-template-columns: 1fr; /* Una columna en tablets y móviles */
-  }
-  
   .showroom-map {
     height: 400px;
+    min-height: 400px;
   }
+}
+
+/* --- CORRECCIÓN CARRUSEL --- */
+.slick-slider {
+  width: 100%;
+  display: block;
+}
+
+.carousel-wrapper-shadow {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  /* Asegura que el contenedor tenga fondo si la imagen tarda en cargar */
+  background-color: #222; 
 }
